@@ -6,6 +6,11 @@ module.exports = {
     './components/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
+    screens: {
+      '2xs': '375px',
+      xs: '475px',
+      ...twDefaultTheme.screens,
+    },
     extend: {
       fontFamily: {
         raleway: ['Raleway', ...twDefaultTheme.fontFamily.sans],
