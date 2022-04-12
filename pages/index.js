@@ -67,7 +67,7 @@ export default function Home() {
                 </div>
 
                 <div>
-                  <PrimaryLink href='#'>
+                  <PrimaryLink href='#ExploreSection'>
                     <span aria-hidden='true'>Explore now</span>
                     <span className='inline-block fixed left-[-9999px]'>
                       Go to explore section
