@@ -9,6 +9,7 @@ import PrimaryLink from '../components/PrimaryLink';
 import NavApp from '../components/NavApp';
 import RestaurantCard from '../components/RestaurantCard';
 import RestaurantCardLoad from '../components/RestaurantCardLoad';
+import FooterApp from '../components/FooterApp';
 
 export default function Home() {
   const [showHeaderImg, setShowHeaderImg] = useState(false);
@@ -125,6 +126,8 @@ export default function Home() {
           </div>
         </article>
       </main>
+
+      <FooterApp />
     </div>
   );
 }
