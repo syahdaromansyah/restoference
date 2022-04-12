@@ -1,10 +1,17 @@
+const twDefaultTheme = require('tailwindcss/defaultTheme');
+
 module.exports = {
   content: [
     './pages/**/*.{js,ts,jsx,tsx}',
     './components/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        raleway: ['Raleway', ...twDefaultTheme.fontFamily.sans],
+        inter: ['Inter', ...twDefaultTheme.fontFamily.sans],
+      },
+    },
   },
   plugins: [],
 };
