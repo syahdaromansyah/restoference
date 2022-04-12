@@ -1,12 +1,18 @@
 import { useState, useEffect } from 'react';
 import Head from 'next/head';
+import Link from 'next/link';
 import Image from 'next/image';
+import { useRestaurantLists } from '../scripts/libs/restaurantDataHook';
+import generateIds from '../scripts/libs/generateIds';
 import restaurantImg from '../public/assets/images/restaurant-image-1.jpg';
 import PrimaryLink from '../components/PrimaryLink';
 import NavApp from '../components/NavApp';
+import RestaurantCard from '../components/RestaurantCard';
+import RestaurantCardLoad from '../components/RestaurantCardLoad';
 
 export default function Home() {
   const [showHeaderImg, setShowHeaderImg] = useState(false);
+  const { restaurantPartialLists } = useRestaurantLists(6);
 
   useEffect(() => {
     const resizeObserver = new ResizeObserver(([htmlElement]) => {
@@ -53,7 +59,7 @@ export default function Home() {
                 <div>
                   <PrimaryLink href='#'>
                     <span aria-hidden='true'>Explore now</span>
-                    <span className='inline-block fixed top-[-9999px] left-[-9999px]'>
+                    <span className='inline-block fixed left-[-9999px]'>
                       Go to explore section
                     </span>
                   </PrimaryLink>
@@ -76,6 +82,49 @@ export default function Home() {
           </div>
         </div>
       </header>
+
+      <main className='mb-8 md:mb-12'>
+        <article id='ExploreSection' className='ExploreSection'>
+          <div className='container mx-auto px-8 pt-8 md:pt-10'>
+            <div className='max-w-6xl mx-auto '>
+              <div className='text-center mb-8 lg:mb-12'>
+                <h2 className='font-raleway font-bold text-2xl md:text-3xl mb-2'>
+                  Explore Restaurant
+                </h2>
+                <p className='text-lg'>
+                  Find and explore your restaurant destination
+                </p>
+              </div>
+
+              <div className='grid md:grid-cols-2 lg:grid-cols-3 md:gap-x-6 gap-y-8 min-h-[3078px] 2xs:min-h-[3252px] md:min-h-[1732px] lg:min-h-[1152px] mb-8 md:mb-12'>
+                {restaurantPartialLists
+                  ? restaurantPartialLists
+                      .slice(0, 6)
+                      .map((restaurantListData) => (
+                        <RestaurantCard
+                          key={restaurantListData.id}
+                          restaurantData={restaurantListData}
+                        />
+                      ))
+                  : generateIds(6).map((id) => (
+                      <RestaurantCardLoad key={id.id} />
+                    ))}
+              </div>
+
+              <div className='text-center'>
+                <Link href='/explore' passHref>
+                  <PrimaryLink>
+                    <span aria-hidden='true'>Find more</span>
+                    <span className='inline-block fixed left-[-9999px]'>
+                      Go to Explore page for find more restaurant destination
+                    </span>
+                  </PrimaryLink>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </article>
+      </main>
     </div>
   );
 }
