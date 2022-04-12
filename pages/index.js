@@ -34,6 +34,15 @@ export default function Home() {
         <title>Find Restaurant With No Time | RestoFerence</title>
       </Head>
 
+      <div className='A11ySection'>
+        <PrimaryLink
+          href='#HeaderBanner'
+          className='fixed left-[-9999px] p-4 focus:top-4 focus:left-4'
+        >
+          Skip to content
+        </PrimaryLink>
+      </div>
+
       <header className='HeaderSection bg-gradient-to-br from-orange-100 to-yellow-100'>
         <div className='container mx-auto px-8 pt-4 lg:pt-6 xl:pt-8 pb-20 xl:pb-24'>
           <div className='max-w-6xl mx-auto'>
