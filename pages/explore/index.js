@@ -8,6 +8,7 @@ import FilterRestaurant from '../../components/FilterRestaurant';
 import RestaurantCard from '../../components/RestaurantCard';
 import RestaurantCardLoad from '../../components/RestaurantCardLoad';
 import PrimaryButton from '../../components/PrimaryButton';
+import PrimaryLink from '../../components/PrimaryLink';
 import FooterApp from '../../components/FooterApp';
 
 export default function Explore() {
@@ -48,6 +49,15 @@ export default function Explore() {
         <title>Explore Restaurant | RestoFerence</title>
       </Head>
 
+      <div className='A11ySection'>
+        <PrimaryLink
+          href='#HeaderBanner'
+          className='fixed left-[-9999px] p-4 focus:top-4 focus:left-4'
+        >
+          Skip to content
+        </PrimaryLink>
+      </div>
+
       <header className='HeaderSection bg-gradient-to-br from-orange-100 to-yellow-100'>
         <div className='container mx-auto px-8 pt-4 lg:pt-6 xl:pt-8 pb-16 xl:pb-24'>
           <div className='max-w-6xl mx-auto'>
@@ -55,7 +65,7 @@ export default function Explore() {
               <NavApp />
             </div>
 
-            <div className='HeaderBanner'>
+            <div id='HeaderBanner' className='HeaderBanner'>
               <div className='text-center'>
                 <div className='mb-6 lg:mb-8'>
                   <h1 className='font-raleway font-bold text-2xl 2xs:text-3xl md:text-4xl lg:text-6xl mb-2 lg:mb-4'>
