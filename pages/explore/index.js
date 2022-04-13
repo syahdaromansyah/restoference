@@ -1,11 +1,21 @@
 import Head from 'next/head';
+import cn from 'classnames';
 import { useRestaurantLists } from '../../scripts/libs/restaurantDataHook';
 import { useRestaurantFilter } from '../../scripts/libs/restaurantFilterHook';
+import generateIds from '../../scripts/libs/generateIds';
 import NavApp from '../../components/NavApp';
 import FilterRestaurant from '../../components/FilterRestaurant';
+import RestaurantCard from '../../components/RestaurantCard';
+import RestaurantCardLoad from '../../components/RestaurantCardLoad';
+import PrimaryButton from '../../components/PrimaryButton';
 
 export default function Explore() {
-  const { restaurantPartialLists } = useRestaurantLists(6);
+  const {
+    totalRestaurantLists,
+    restaurantPartialLists,
+    totalRestaurantPartialLists,
+    addRestaurantPartialLists,
+  } = useRestaurantLists(6);
 
   const {
     searchValue,
@@ -24,6 +34,11 @@ export default function Explore() {
   const searchValueHandler = (e) => {
     const searchValue = e.target.value;
     setSearchValue(searchValue);
+  };
+
+  const loadMoreHandler = () => {
+    setSearchValue('');
+    addRestaurantPartialLists(6);
   };
 
   return (
@@ -65,6 +80,75 @@ export default function Explore() {
           </div>
         </div>
       </header>
+
+      <main className='mb-8 md:mb-12'>
+        <article className='ExploreSection'>
+          <div className='container mx-auto px-4 pt-8 md:pt-10'>
+            <div className='max-w-6xl mx-auto'>
+              <p className='bg-gradient-to-br from-orange-100 to bg-yellow-100 shadow shadow-orange-200/40 font-semibold text-center text-slate-800 p-4 mb-8 rounded-md md:max-w-max'>
+                Total restaurants: {totalFilteredRestaurant}
+              </p>
+
+              {searchValue && (
+                <div
+                  className={cn(
+                    'flex justify-center items-center pt-36 mb-44 min-h-[320px]',
+                    {
+                      hidden: totalFilteredRestaurant !== 0,
+                    }
+                  )}
+                >
+                  <p className='bg-slate-300 shadow text-slate-800 text-center px-4 py-1 rounded-md max-w-max mx-auto'>
+                    We&apos;re sorry,{' '}
+                    <span className='font-bold'>{searchValue}</span> restaurant
+                    is not available.
+                  </p>
+                </div>
+              )}
+
+              <div
+                className={cn(
+                  'grid md:grid-cols-2 lg:grid-cols-3 md:gap-x-6 gap-y-8 mb-8 md:mb-12',
+                  {
+                    'min-h-[3078px] 2xs:min-h-[3252px] md:min-h-[1732px] lg:min-h-[1152px]':
+                      !searchValue,
+                  },
+                  { hidden: searchValue && totalFilteredRestaurant === 0 }
+                )}
+              >
+                {restaurantPartialLists
+                  ? filterRestaurantData(restaurantPartialLists).map(
+                      (restaurantData) => (
+                        <RestaurantCard
+                          key={restaurantData.id}
+                          restaurantData={restaurantData}
+                        />
+                      )
+                    )
+                  : generateIds(6).map((id) => (
+                      <RestaurantCardLoad key={id.id} />
+                    ))}
+              </div>
+
+              <div className='text-center'>
+                <PrimaryButton
+                  onClick={loadMoreHandler}
+                  disabled={
+                    totalRestaurantPartialLists === totalRestaurantLists
+                  }
+                >
+                  <span aria-hidden='true'>Load more (+6)</span>
+                  <span className='inline-block fixed left-[-9999px]'>
+                    {totalRestaurantPartialLists === totalRestaurantLists
+                      ? 'Cannot load more six restaurant data. Total restaurant data has reach maximum number.'
+                      : 'Load more six restaurant data'}
+                  </span>
+                </PrimaryButton>
+              </div>
+            </div>
+          </div>
+        </article>
+      </main>
     </div>
   );
 }
