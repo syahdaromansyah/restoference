@@ -25,4 +25,19 @@ const useRestaurantLists = (initialTotalLists = 6) => {
   };
 };
 
-export { useRestaurantLists };
+const useRestaurantDetail = (restaurantId) => {
+  const { data, error } = useSWR(
+    restaurantId ? API_ENDPOINT.DETAIL(restaurantId) : null,
+    fetcher,
+    { refreshInterval: 1000 }
+  );
+
+  return {
+    restaurantDetailData: data?.restaurant,
+    restaurantDetailError: data?.error,
+    isLoading: !data && !error,
+    isError: error,
+  };
+};
+
+export { useRestaurantLists, useRestaurantDetail };
