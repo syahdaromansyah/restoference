@@ -8,6 +8,7 @@ import FilterRestaurant from '../../components/FilterRestaurant';
 import RestaurantCard from '../../components/RestaurantCard';
 import RestaurantCardLoad from '../../components/RestaurantCardLoad';
 import PrimaryButton from '../../components/PrimaryButton';
+import FooterApp from '../../components/FooterApp';
 
 export default function Explore() {
   const {
@@ -149,6 +150,8 @@ export default function Explore() {
           </div>
         </article>
       </main>
+
+      <FooterApp />
     </div>
   );
 }
