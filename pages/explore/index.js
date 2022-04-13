@@ -17,7 +17,7 @@ export default function Explore() {
     filterRestaurantData,
   } = useRestaurantFilter();
 
-  const totalRestaurantFilter = filterRestaurantData(
+  const totalFilteredRestaurant = filterRestaurantData(
     restaurantPartialLists
   ).length;
 
@@ -58,7 +58,7 @@ export default function Explore() {
                   setSortByValue={setSortByValue}
                   sortAsValue={sortAsValue}
                   setSortAsValue={setSortAsValue}
-                  filteredDataLength={totalRestaurantFilter}
+                  filteredDataLength={totalFilteredRestaurant}
                 />
               </div>
             </div>
