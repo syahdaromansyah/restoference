@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import cn from 'classnames';
-import { useRestaurantLists } from '../../scripts/libs/restaurantDataHook';
+import { useRestaurantList } from '../../scripts/libs/restaurantDataHook';
 import { useRestaurantFilter } from '../../scripts/libs/restaurantFilterHook';
 import generateIds from '../../scripts/libs/generateIds';
 import NavApp from '../../components/NavApp';
@@ -13,11 +13,11 @@ import FooterApp from '../../components/FooterApp';
 
 export default function Explore() {
   const {
-    totalRestaurantLists,
-    restaurantPartialLists,
-    totalRestaurantPartialLists,
-    addRestaurantPartialLists,
-  } = useRestaurantLists(6);
+    totalRestaurantList,
+    restaurantPartialList,
+    totalRestaurantPartialList,
+    addRestaurantPartialList,
+  } = useRestaurantList(6);
 
   const {
     searchValue,
@@ -30,7 +30,7 @@ export default function Explore() {
   } = useRestaurantFilter();
 
   const totalFilteredRestaurant = filterRestaurantData(
-    restaurantPartialLists
+    restaurantPartialList
   ).length;
 
   const searchValueHandler = (e) => {
@@ -40,7 +40,7 @@ export default function Explore() {
 
   const loadMoreHandler = () => {
     setSearchValue('');
-    addRestaurantPartialLists(6);
+    addRestaurantPartialList(6);
   };
 
   return (
@@ -127,8 +127,8 @@ export default function Explore() {
                   { hidden: searchValue && totalFilteredRestaurant === 0 }
                 )}
               >
-                {restaurantPartialLists
-                  ? filterRestaurantData(restaurantPartialLists).map(
+                {restaurantPartialList
+                  ? filterRestaurantData(restaurantPartialList).map(
                       (restaurantData) => (
                         <RestaurantCard
                           key={restaurantData.id}
@@ -144,13 +144,11 @@ export default function Explore() {
               <div className='text-center'>
                 <PrimaryButton
                   onClick={loadMoreHandler}
-                  disabled={
-                    totalRestaurantPartialLists === totalRestaurantLists
-                  }
+                  disabled={totalRestaurantPartialList === totalRestaurantList}
                 >
                   <span aria-hidden='true'>Load more (+6)</span>
                   <span className='inline-block fixed left-[-9999px]'>
-                    {totalRestaurantPartialLists === totalRestaurantLists
+                    {totalRestaurantPartialList === totalRestaurantList
                       ? 'Cannot load more six restaurant data. Total restaurant data has reach maximum number.'
                       : 'Load more six restaurant data'}
                   </span>

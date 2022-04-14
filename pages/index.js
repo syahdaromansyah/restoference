@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useRestaurantLists } from '../scripts/libs/restaurantDataHook';
+import { useRestaurantList } from '../scripts/libs/restaurantDataHook';
 import generateIds from '../scripts/libs/generateIds';
 import restaurantImg from '../public/assets/images/restaurant-image-1.jpg';
 import PrimaryLink from '../components/PrimaryLink';
@@ -13,7 +13,7 @@ import FooterApp from '../components/FooterApp';
 
 export default function Home() {
   const [showHeaderImg, setShowHeaderImg] = useState(false);
-  const { restaurantPartialLists } = useRestaurantLists(6);
+  const { restaurantPartialList } = useRestaurantList(6);
 
   useEffect(() => {
     const resizeObserver = new ResizeObserver(([htmlElement]) => {
@@ -107,8 +107,8 @@ export default function Home() {
               </div>
 
               <div className='grid md:grid-cols-2 lg:grid-cols-3 md:gap-x-6 gap-y-8 min-h-[3078px] 2xs:min-h-[3252px] md:min-h-[1732px] lg:min-h-[1152px] mb-8 md:mb-12'>
-                {restaurantPartialLists
-                  ? restaurantPartialLists
+                {restaurantPartialList
+                  ? restaurantPartialList
                       .slice(0, 6)
                       .map((restaurantListData) => (
                         <RestaurantCard
