@@ -4,21 +4,21 @@ import API_ENDPOINT from '../globals/API_ENDPOINT';
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
-const useRestaurantLists = (initialTotalLists = 6) => {
+const useRestaurantList = (initialTotalList = 6) => {
   const { data, error } = useSWR(API_ENDPOINT.LISTS, fetcher);
-  const [totalPartialLists, setTotalPartialLists] = useState(initialTotalLists);
+  const [totalPartialList, setTotalPartialList] = useState(initialTotalList);
 
   return {
-    restaurantLists: data?.restaurants,
-    totalRestaurantLists: data?.count,
-    restaurantPartialLists: data?.restaurants.slice(0, totalPartialLists),
-    totalRestaurantPartialLists: totalPartialLists,
-    addRestaurantPartialLists: (addNumber) => {
-      const totalAddedPartial = addNumber + totalPartialLists;
+    restaurantList: data?.restaurants,
+    totalRestaurantList: data?.count,
+    restaurantPartialList: data?.restaurants.slice(0, totalPartialList),
+    totalRestaurantPartialList: totalPartialList,
+    addRestaurantPartialList: (addNumber) => {
+      const totalAddedPartial = addNumber + totalPartialList;
       if (totalAddedPartial >= data?.count)
-        return setTotalPartialLists(data?.count);
+        return setTotalPartialList(data?.count);
       if (totalAddedPartial === data?.count) return;
-      return setTotalPartialLists((prevValue) => prevValue + addNumber);
+      return setTotalPartialList((prevValue) => prevValue + addNumber);
     },
     isLoading: !data && !error,
     isError: error,
@@ -40,4 +40,4 @@ const useRestaurantDetail = (restaurantId) => {
   };
 };
 
-export { useRestaurantLists, useRestaurantDetail };
+export { useRestaurantList, useRestaurantDetail };
