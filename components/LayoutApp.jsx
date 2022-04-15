@@ -1,24 +1,10 @@
-import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import cn from 'classnames';
-import throttle from '../scripts/libs/throttle';
+import useShowScroll from '../scripts/libs/useShowScroll';
 import ScrollTopButton from './ScrollTopButton';
 
 export default function LayoutApp({ children }) {
-  const [showScrollTop, setShowScrollTop] = useState(false);
-  useEffect(() => {
-    const scrollHandler = throttle(() => {
-      const currentScrollY = window.scrollY;
-      if (currentScrollY > 479) setShowScrollTop(true);
-      else setShowScrollTop(false);
-    }, 300);
-
-    window.addEventListener('scroll', scrollHandler);
-
-    return () => {
-      window.removeEventListener('scroll', scrollHandler);
-    };
-  }, []);
+  const { showScroll } = useShowScroll(465);
 
   return (
     <div className='LayoutApp'>
@@ -37,8 +23,8 @@ export default function LayoutApp({ children }) {
       <div
         className={cn(
           'fixed bottom-4 right-4 transition duration-300',
-          { 'translate-x-24': !showScrollTop },
-          { 'translate-x-0': showScrollTop }
+          { 'translate-x-24': !showScroll },
+          { 'translate-x-0': showScroll }
         )}
       >
         <ScrollTopButton />
