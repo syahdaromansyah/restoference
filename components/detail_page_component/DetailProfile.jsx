@@ -11,7 +11,7 @@ export default function DetailProfile({ restaurantDetailData }) {
   return (
     <div className='grid gap-4 md:gap-6 md:grid-cols-2 md:items-center'>
       <div>
-        <div className='relative h-[180px] md:h-[220px] lg:h-[300px] rounded-md w-full overflow-hidden'>
+        <div className='relative h-[180px] 2xs:h-[250px] md:h-[320px] rounded-md w-full overflow-hidden'>
           <Image
             src={`${CONFIG.BASE_IMAGE_URL_SMALL}${restaurantDetailData.pictureId}`}
             alt={`${restaurantDetailData.name} restaurant image`}
