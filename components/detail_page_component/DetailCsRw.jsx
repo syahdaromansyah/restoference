@@ -12,7 +12,7 @@ export default function DetailCsRw({ restaurantDetailData }) {
 
       <ul className='grid gap-4 mb-4'>
         {restaurantDetailData.customerReviews.map((review, reviewIdx) => (
-          <li key={reviewIdx}>
+          <li className='break-words overflow-hidden' key={reviewIdx}>
             <DetailRwCard
               restaurantDetailData={restaurantDetailData}
               reviewName={review.name}
