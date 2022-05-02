@@ -48,7 +48,7 @@ export default function ReviewDialog({
 
             <Dialog.Description className='text-slate-400 mb-6'>
               {submitStatus === 'success' &&
-                'Hooray! Your review has been successfuly submitted. You can check your review on Customer Review section on this page.'}
+                'Hooray! Your review is successfully submitted. You can check your review in the Customer Review section on this page.'}
 
               {submitStatus === 'reject' &&
                 'Oops! Please fill your review name and review text with no all blank spaces.'}
@@ -63,7 +63,7 @@ export default function ReviewDialog({
               tabIndex='-1'
             >
               {submitStatus === 'success' &&
-                'Review submitted. Hooray! Your review has been successfuly submitted. You can check your review on Customer Review section on this page.'}
+                'Review submitted. Hooray! Your review is successfully submitted. You can check your review in the Customer Review section on this page.'}
 
               {submitStatus === 'reject' &&
                 'Review rejected. Oops! Please fill your review name and review text with no all blank spaces.'}
