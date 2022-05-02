@@ -25,25 +25,29 @@ export default function ReviewForm({
   };
 
   const reviewSubmitHandler = async () => {
-    const detailPageId = nextRouter.query.id;
-    const reviewInputNotEmpty =
-      reviewName.replaceAll(' ', '') && reviewMsg.replaceAll(' ', '');
+    try {
+      const detailPageId = nextRouter.query.id;
+      const reviewInputNotEmpty =
+        reviewName.replaceAll(' ', '') && reviewMsg.replaceAll(' ', '');
 
-    if (reviewInputNotEmpty) {
-      submitStatusHandler('success');
-      await axios.post(API_ENDPOINT.REVIEW, {
-        id: detailPageId,
-        name: reviewName,
-        review: reviewMsg,
-      });
+      if (reviewInputNotEmpty) {
+        await axios.post(API_ENDPOINT.REVIEW, {
+          id: detailPageId,
+          name: reviewName,
+          review: reviewMsg,
+        });
 
-      setReviewName('');
-      setReviewMsg('');
-    } else {
-      submitStatusHandler('reject');
+        setReviewName('');
+        setReviewMsg('');
+        submitStatusHandler('success');
+      } else {
+        submitStatusHandler('reject');
+      }
+    } catch (error) {
+      submitStatusHandler('offline');
+    } finally {
+      dialogReviewHandler();
     }
-
-    dialogReviewHandler();
   };
 
   return (
