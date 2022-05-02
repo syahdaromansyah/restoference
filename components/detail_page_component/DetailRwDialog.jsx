@@ -27,7 +27,7 @@ export default function ReviewDialog({
                 <CheckCircleIcon className='text-green-400 mx-auto h-12 w-12' />
               )}
 
-              {submitStatus === 'reject' && (
+              {(submitStatus === 'reject' || submitStatus === 'offline') && (
                 <XCircleIcon className='text-red-400 mx-auto h-12 w-12' />
               )}
             </div>
@@ -39,7 +39,7 @@ export default function ReviewDialog({
                 </span>
               )}
 
-              {submitStatus === 'reject' && (
+              {(submitStatus === 'reject' || submitStatus === 'offline') && (
                 <span className='inline-block font-bold text-xl'>
                   Review Rejected
                 </span>
@@ -52,6 +52,9 @@ export default function ReviewDialog({
 
               {submitStatus === 'reject' &&
                 'Oops! Please fill your review name and review text with no all blank spaces.'}
+
+              {submitStatus === 'offline' &&
+                'Oops! Something went wrong with submitting your review. Please check your internet connection.'}
             </Dialog.Description>
 
             <p
@@ -64,6 +67,9 @@ export default function ReviewDialog({
 
               {submitStatus === 'reject' &&
                 'Review rejected. Oops! Please fill your review name and review text with no all blank spaces.'}
+
+              {submitStatus === 'offline' &&
+                'Review rejected. Oops! Something went wrong with submitting your review. Please check your internet connection.'}
             </p>
 
             <PrimaryButton onClick={dialogReviewHandler}>
