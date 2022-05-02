@@ -26,6 +26,7 @@ export default function ReviewDialog({
               {submitStatus === 'success' && (
                 <CheckCircleIcon className='text-green-400 mx-auto h-12 w-12' />
               )}
+
               {submitStatus === 'reject' && (
                 <XCircleIcon className='text-red-400 mx-auto h-12 w-12' />
               )}
@@ -37,6 +38,7 @@ export default function ReviewDialog({
                   Review Submitted
                 </span>
               )}
+
               {submitStatus === 'reject' && (
                 <span className='inline-block font-bold text-xl'>
                   Review Rejected
@@ -47,6 +49,7 @@ export default function ReviewDialog({
             <Dialog.Description className='text-slate-400 mb-6'>
               {submitStatus === 'success' &&
                 'Hooray! Your review has been successfuly submitted. You can check your review on Customer Review section on this page.'}
+
               {submitStatus === 'reject' &&
                 'Oops! Please fill your review name and review text with no all blank spaces.'}
             </Dialog.Description>
@@ -58,6 +61,7 @@ export default function ReviewDialog({
             >
               {submitStatus === 'success' &&
                 'Review submitted. Hooray! Your review has been successfuly submitted. You can check your review on Customer Review section on this page.'}
+
               {submitStatus === 'reject' &&
                 'Review rejected. Oops! Please fill your review name and review text with no all blank spaces.'}
             </p>
