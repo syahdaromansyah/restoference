@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import PrimaryLink from '../components/PrimaryLink';
 
-export default function NotFound() {
+export default function Offline() {
   return (
     <div className='OfflinePage'>
       <div className='container mx-auto px-8 h-screen w-full overflow-hidden'>
