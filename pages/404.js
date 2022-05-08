@@ -16,7 +16,7 @@ export default function NotFound() {
       <div className='container mx-auto px-8 h-screen w-full overflow-hidden'>
         <div className='flex justify-center items-center h-full'>
           <div className='break-words text-center w-full'>
-            <h1 className='font-raleway font-bold text-4xl 2xs:text-5xl mb-2 md:mb-4'>
+            <h1 className='font-raleway font-bold text-xl 2xs:text-2xl md:text-4xl lg:text-6xl mb-2 md:mb-4 lg:mb-6'>
               Oops! Page Not Found.
             </h1>
 
