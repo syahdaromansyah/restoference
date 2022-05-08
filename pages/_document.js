@@ -4,6 +4,15 @@ export default function Document() {
   return (
     <Html lang='en' className='scroll-smooth'>
       <Head>
+        <meta name='theme-color' content='#1e293b' />
+
+        <link rel='manifest' href='/app.webmanifest' />
+
+        <link
+          rel='apple-touch-icon'
+          href='/assets/icons/restoference-180x180.png'
+        />
+
         <link rel='preconnect' href='https://fonts.googleapis.com' />
 
         <link
